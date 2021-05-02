@@ -31,9 +31,9 @@ jobs:
         uses: docker/login-action@v1.9.0
         with:
           # Username used to log against the Docker registry
-          username: ${{DOCKERHUB_USER}}
+          username: ${{secrets.DOCKERHUB_USER}}
           # Password or personal access token used to log against the Docker registry
-          password: ${{DOCKERHUB_PWD}}
+          password: ${{secrets.DOCKERHUB_PWD}}
           
       - name: Build and push Docker images
         # You may pin to the exact commit or the version.
@@ -59,7 +59,7 @@ jobs:
           # Acceptable values: kubeconfig or service-account
           method: kubeconfig
           # Kubernetes Config
-          kubeconfig: ${{K8S_CONFIG}}
+          kubeconfig: ${{secrets.K8S_CONFIG}}
           
       - name: Deploy to Kubernetes cluster
         uses: Azure/k8s-deploy@v1.3
